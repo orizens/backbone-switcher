@@ -2,7 +2,10 @@
 backbone.switcher role is to switch views when a certain attribute of the model has change.
 Views are isntansiated each time and are given the "parent" model as a reference. Hence, the Parent view that holds them functions as a somewhat "proxy" for the views.
 
-# Usage
+## Requirements
+switcher is an extension on top of [backbone.beamer](https://github.com/orizens/Backbone.Beamer)
+
+## Usage
 simple usage of switcher:
 ``` javascript
 	var layout = Backbone.View.extend({
