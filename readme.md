@@ -10,14 +10,16 @@ simple usage of switcher:
 ``` javascript
 	var layout = Backbone.View.extend({
 		switcher: {
+			// 'key' is a reference to an attribute in "this.model"
+			// it tells the view to listen to change event of the "resource" attribute
 			key: 'resource',
-			// 'key' may be a reference to multiple attributes values
-			// and may be defined as such:
-			// key: 'resource filter'
-
+			
+			// the keys "viewA", "viewB" are possible values
+			// of the "resource" attribute in "this.model"
+			// "SettingsView" is a reference to some custom Backbone.View object (not an instance)
 			views: {
-				viewA: SomeViewA,
-				viewB: SomeViewB
+				settings: SettingsView,
+				help: HelpView
 			}
 		},
 		
@@ -25,4 +27,10 @@ simple usage of switcher:
 			console.log('init...', this.options);
 		}
 	});
+	
+	// later in the instance of layout
+	var layoutView = new layout({ model: contactModel });
+	contactModel.set({ resource: "settings" });
+	// now layoutView will remove the current active view and
+	// will instansiate a new viewA instance, and render it to layoutView.el DOM element.
 ```
