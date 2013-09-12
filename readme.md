@@ -1,6 +1,6 @@
 # Intro
 backbone.switcher role is to switch views when a certain attribute of the model has change.
-Views are isntansiated each time and are given the "parent" model as a reference. Hence, the Parent view that holds them functions as a somewhat "proxy" for the views.
+Views are created each time and are given the "parent" model as a reference. Hence, the Parent view keeps a reference to the functions as a somewhat "proxy" for the views.
 
 ## Requirements
 switcher is an extension on top of [backbone.beamer](https://github.com/orizens/Backbone.Beamer)
