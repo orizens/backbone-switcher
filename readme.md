@@ -20,7 +20,12 @@ simple usage of switcher:
 			views: {
 				settings: SettingsView,
 				help: HelpView
-			}
+			},
+			
+			// the default target element to render each view is "this.$el"
+			// the target can be customized simply with a selector
+			// the selector will be evaluated with "this.$"
+			target: '.a-css-selector'
 		},
 		
 		initialize: function() {
