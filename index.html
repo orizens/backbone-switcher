@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Backbone-switcher by orizens</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Backbone-switcher</h1>
+        <p class="header">A view manager for managing &amp; switching sub-views easily.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/orizens/backbone-switcher/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/orizens/backbone-switcher/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/orizens/backbone-switcher">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/orizens">orizens</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="intro" class="anchor" href="#intro"><span class="octicon octicon-link"></span></a>Intro</h1>
+
+<p>backbone.switcher role is to switch views when a certain attribute of the model has change.
+Views are created each time and are given the "parent" model as a reference. Hence, the Parent view keeps a reference to the functions as a somewhat "proxy" for the views.</p>
+
+<p>The purpose of switcher is to overcome the boilerplate of managing views and zombie views when switching views. Also, it allows to create views which corresponds to a state in a model rather than to a url (think of angular's ui-router).</p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>switcher is an extension on top of <a href="https://github.com/orizens/Backbone.Beamer">backbone.beamer</a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>simple usage of switcher:</p>
+
+<div class="highlight highlight-javascript"><pre>    <span class="kd">var</span> <span class="nx">layout</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="nx">switcher</span><span class="o">:</span> <span class="p">{</span>
+            <span class="c1">// 'key' is a reference to an attribute in "this.model"</span>
+            <span class="c1">// it tells the view to listen to change event of the "resource" attribute</span>
+            <span class="nx">key</span><span class="o">:</span> <span class="s1">'resource'</span><span class="p">,</span>
+
+            <span class="c1">// the keys "viewA", "viewB" are possible values</span>
+            <span class="c1">// of the "resource" attribute in "this.model"</span>
+            <span class="c1">// "SettingsView" is a reference to some custom Backbone.View object (not an instance)</span>
+            <span class="nx">views</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">settings</span><span class="o">:</span> <span class="nx">SettingsView</span><span class="p">,</span>
+                <span class="nx">help</span><span class="o">:</span> <span class="nx">HelpView</span>
+            <span class="p">},</span>
+
+            <span class="c1">// the default target element to render each view is "this.$el"</span>
+            <span class="c1">// the target can be customized simply with a selector</span>
+            <span class="c1">// the selector will be evaluated with "this.$"</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">'.a-css-selector'</span>
+        <span class="p">},</span>
+
+        <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'init...'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="c1">// later in the instance of layout</span>
+    <span class="kd">var</span> <span class="nx">layoutView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">layout</span><span class="p">({</span> <span class="nx">model</span><span class="o">:</span> <span class="nx">contactModel</span> <span class="p">});</span>
+    <span class="nx">contactModel</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span> <span class="nx">resource</span><span class="o">:</span> <span class="s2">"settings"</span> <span class="p">});</span>
+    <span class="c1">// now layoutView will remove the current active view and</span>
+    <span class="c1">// will instansiate a new viewA instance, and render it to layoutView.el DOM element.</span>
+</pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-35188202-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
